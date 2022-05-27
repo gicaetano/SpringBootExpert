@@ -1,14 +1,16 @@
 package br.com.iamdev.vendas;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
+@Development
 public class MinhaConfiguration {
 	
-	@Bean(name = "applicationName")
-	public String applicationName() {
-		return "Sistema de Vendas";
+	@Bean
+	public CommandLineRunner executar() {
+		return ergs -> {
+			System.out.println("RODANDO  CONFIGURAÇÃO DE DESENVOLVIMENTO");
+		};
 	}
 	
 }
