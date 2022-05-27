@@ -1,0 +1,14 @@
+package br.com.iamdev.vendas;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Configuration
+@Profile("development")
+public @interface Development {
+
+}
