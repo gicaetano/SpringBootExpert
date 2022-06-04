@@ -2,7 +2,7 @@ package com.iamdev.elesig.domain.entity;
 
 import java.math.BigDecimal;
 
-public class Produto {
+public class ProdutoEntity {
 	
 	private Integer id;
 	private String descrição;

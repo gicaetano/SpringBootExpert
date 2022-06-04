@@ -1,21 +1,19 @@
 package com.iamdev.elesig.domain.entity;
 
-public class Cliente {
+public class ClienteEntity {
 	
 	private Integer id;
 	private String nome;
 	
-	public Cliente() {
+	public ClienteEntity() {
 	}
 	
-	public Cliente(Integer id, String nome) {
+	public ClienteEntity(Integer id, String nome) {
 		this.id = id;
 		this.nome = nome;
 	}
 
-
-
-	public Cliente(String nome) {
+	public ClienteEntity(String nome) {
 		this.nome = nome;
 	}
 	

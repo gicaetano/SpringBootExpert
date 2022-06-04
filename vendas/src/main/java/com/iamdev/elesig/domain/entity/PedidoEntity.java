@@ -3,10 +3,10 @@ package com.iamdev.elesig.domain.entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Pedido {
+public class PedidoEntity {
 	
 	private Integer id;
-	private Cliente Cliente;
+	private ClienteEntity Cliente;
 	private LocalDate dataPedido;
 	private BigDecimal total;
 	
@@ -16,10 +16,10 @@ public class Pedido {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Cliente getCliente() {
+	public ClienteEntity getCliente() {
 		return Cliente;
 	}
-	public void setCliente(Cliente cliente) {
+	public void setCliente(ClienteEntity cliente) {
 		Cliente = cliente;
 	}
 	public LocalDate getDataPedido() {

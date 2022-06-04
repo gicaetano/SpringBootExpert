@@ -1,10 +1,10 @@
 package com.iamdev.elesig.domain.entity;
 
-public class ItemPedido {
+public class ItemPedidoEntity {
 	
 	private Integer id;
-	private Pedido pedido;
-	private Produto produto;
+	private PedidoEntity pedido;
+	private ProdutoEntity produto;
 	private Integer quantidade;
 	
 	public Integer getId() {
@@ -13,16 +13,16 @@ public class ItemPedido {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Pedido getPedido() {
+	public PedidoEntity getPedido() {
 		return pedido;
 	}
-	public void setPedido(Pedido pedido) {
+	public void setPedido(PedidoEntity pedido) {
 		this.pedido = pedido;
 	}
-	public Produto getProduto() {
+	public ProdutoEntity getProduto() {
 		return produto;
 	}
-	public void setProduto(Produto produto) {
+	public void setProduto(ProdutoEntity produto) {
 		this.produto = produto;
 	}
 	public Integer getQuantidade() {
