@@ -1,25 +1,39 @@
 package com.iamdev.elesig.domain.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CLIENTE")
+@Table(name = "cliente")
 public class ClienteEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
 	@Column
 	private Integer id;
 	
 	@Column(name = "nome", length = 100)
 	private String nome;
 	
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
+	private Set<PedidoEntity> pedidos;
+	
+	public Set<PedidoEntity> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(Set<PedidoEntity> pedidos) {
+		this.pedidos = pedidos;
+	}
+
 	public ClienteEntity() {
 	}
 	
@@ -52,7 +66,5 @@ public class ClienteEntity {
 				", nome='" + nome + '\''+
 				'}';
 	}
-	
-	
 	
 }
