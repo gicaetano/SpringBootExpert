@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "cliente")
 public class ClienteEntity {
@@ -23,7 +25,8 @@ public class ClienteEntity {
 	@Column(name = "nome", length = 100)
 	private String nome;
 	
-	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
+	@JsonIgnore
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 	private Set<PedidoEntity> pedidos;
 	
 	public Set<PedidoEntity> getPedidos() {
