@@ -1,7 +1,11 @@
 package com.iamdev.elesig.rest.controller;
 
+import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iamdev.elesig.domain.entity.ClienteEntity;
@@ -27,7 +30,7 @@ public class ClienteController {
 
 	@GetMapping("/api/clientes/{id}")
 	@ResponseBody
-	public ResponseEntity getClienteById(@PathVariable Integer id) {
+	public ResponseEntity<Object> getClienteById(@PathVariable Integer id) {
 		Optional<ClienteEntity> cliente = clientes.findById(id);
 		
 		if(cliente.isPresent()) {
@@ -38,14 +41,14 @@ public class ClienteController {
 	
 	@PostMapping("/api/clientes")
 	@ResponseBody
-	public ResponseEntity save(@RequestBody ClienteEntity cliente) {
+	public ResponseEntity<Object> save(@RequestBody ClienteEntity cliente) {
 		ClienteEntity clienteSalvo = clientes.save(cliente);
 		return ResponseEntity.ok(clienteSalvo);
 	}
 	
 	@DeleteMapping("/api/clientes/{id}")
 	@ResponseBody
-	public ResponseEntity delete(@PathVariable Integer id) {
+	public ResponseEntity<Object> delete(@PathVariable Integer id) {
 		Optional<ClienteEntity> cliente = clientes.findById(id);
 		
 		if(cliente.isPresent()) {
@@ -57,7 +60,7 @@ public class ClienteController {
 	
 	@PutMapping("/api/clientes/{id}")
 	@ResponseBody
-	public ResponseEntity update( @PathVariable Integer id, 
+	public ResponseEntity<Object> update( @PathVariable Integer id, 
 								  @RequestBody ClienteEntity cliente) {
 		return clientes
 				.findById(id)
@@ -66,5 +69,17 @@ public class ClienteController {
 					clientes.save(cliente);
 					return ResponseEntity.noContent().build();
 				}).orElseGet( () -> ResponseEntity.notFound().build());
+	}
+	
+	@GetMapping("/api/clientes")
+	public ResponseEntity<?> find(ClienteEntity filtro){
+		ExampleMatcher matcher = ExampleMatcher
+									.matching()
+									.withIgnoreCase()
+									.withStringMatcher(
+											StringMatcher.CONTAINING);
+		Example<ClienteEntity> example = Example.of(filtro, matcher);
+		List<ClienteEntity> lista = clientes.findAll(example);
+		return ResponseEntity.ok(lista);
 	}
 }
